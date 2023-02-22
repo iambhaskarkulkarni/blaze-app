@@ -2,8 +2,16 @@
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the below command to install the node packages
 
 ```bash
-pip install foobar
+npm install
+```
+
+## Starting application
+
+use the below command to start the application in expo
+
+```bash
+npx expo start
 ```
