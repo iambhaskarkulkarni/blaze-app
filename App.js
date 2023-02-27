@@ -20,6 +20,7 @@ import SaleScreen from './screens/SaleScreen';
 import {TouchableOpacity} from 'react-native';
 import FloatButton from './components/ui/FloatButton';
 import TestScreen from './screens/TestScreen';
+import TestScreen2 from './screens/TestScreen2'
 //import { TouchableOpacity } from 'react-native';
 
 
@@ -273,6 +274,12 @@ function AuthenticatedStack() {
           title="Title"
         name="Test"
         component={TestScreen}
+        />
+      
+      <Stack.Screen
+          title="Title"
+        name="Test2"
+        component={TestScreen2}
       />
     </Stack.Navigator>
   );

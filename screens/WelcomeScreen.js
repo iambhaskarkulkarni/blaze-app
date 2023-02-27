@@ -18,11 +18,10 @@ const Icon = ({ icon, item, background }) => (
     
 );
 
-
-
 const data = [
     {
         name: 'My Task',
+        id:'myTask',
         background: '#778899',
         icon: (item, background) => Icon({ icon: 'star', item, background }),
     },
@@ -50,7 +49,12 @@ export default function App() {
     
     const card = ({ name }) => {
         console.log('Card: ' + name);
-        navigation.navigate('Test')
+        if (name === 'My Task') {
+            navigation.navigate('Test')
+        } else if (name === 'Item Supply') {
+            navigation.navigate('Test2')
+        }
+        
     }
 
     return (
