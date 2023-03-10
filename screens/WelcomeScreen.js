@@ -23,7 +23,7 @@ const data = [
         name: 'My Task',
         id:'myTask',
         background: '#778899',
-        icon: (item, background) => Icon({ icon: 'star', item, background }),
+        icon: (item, background) => Icon({ icon: 'gear', item, background }),
     },
     {
         name: 'Item Supply',

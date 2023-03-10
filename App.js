@@ -21,6 +21,7 @@ import {TouchableOpacity} from 'react-native';
 import FloatButton from './components/ui/FloatButton';
 import TestScreen from './screens/TestScreen';
 import TestScreen2 from './screens/TestScreen2'
+import { Provider as PaperProvider } from 'react-native-paper';
 //import { TouchableOpacity } from 'react-native';
 
 
@@ -325,11 +326,11 @@ function Root() {
 export default function App() {
   
   return (
-    <>
+    <PaperProvider>
       <StatusBar style="light" />
       <AuthContextProvider>
         <Root />
       </AuthContextProvider>
-    </>
+    </PaperProvider>
   );
 }
