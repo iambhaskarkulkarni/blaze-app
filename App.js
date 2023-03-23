@@ -5,29 +5,25 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-//import AppLoading from 'expo-app-loading';
 import LoginScreen from './screens/LoginScreen';
-//import SignupScreen from './screens/SignupScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
-//import DashScreen_all from './screens/DashScreen_all'
 import { Colors } from './constants/styles';
 import AuthContextProvider, { AuthContext } from './store/auth-context';
 import IconButton from './components/ui/IconButton';
-//import { FloatingAction } from "react-native-floating-action";
-//import PurchseRequest from './screens/PurchaseRequest';
 import SaleScreen from './screens/SaleScreen';
-//import { logo } from './assets/images/logo.png';
-import {TouchableOpacity} from 'react-native';
 import FloatButton from './components/ui/FloatButton';
 import TestScreen from './screens/TestScreen';
-import TestScreen2 from './screens/TestScreen2'
-import { Provider as PaperProvider } from 'react-native-paper';
-//import { TouchableOpacity } from 'react-native';
+import TestScreen2 from './screens/TestScreen2';
+import DispalyScreen from './screens/DispalyScreen';
+import MaterialReq from './screens/MaterialReq';
+import Supplier from './screens/Supplier';
+import Commision from './screens/Commision';
+
+
 
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
-
 function DrawerNavigator() {
   const authCtx = useContext(AuthContext);
   return (
@@ -56,24 +52,7 @@ function DrawerNavigator() {
               color={tintColor}
               size={24}
               onPress={authCtx.logout} />
-              <TouchableOpacity
-                style={{
-                  borderWidth: 1,
-                  borderColor: 'blue',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: 70,
-                  position: 'absolute',
-                  top: 850,
-                  icon:'star',
-                  right: 20,
-                  height: 70,
-                  backgroundColor: 'blue',
-                  borderRadius: 100,
-                }}
-                
-                onPress={() => { alert('Advaya Softech Pvt ltd\n Bangalore-560034'); } }
-                ></TouchableOpacity></>
+         </>
           ),
         }}
       />
@@ -92,8 +71,7 @@ function DrawerNavigator() {
               size={24}
               onPress={authCtx.logout} />
             </> 
-            
-          ),
+            ),
         }}
       />
 
@@ -103,8 +81,7 @@ function DrawerNavigator() {
         options={{
           drawerIcon: ({ color, size }) => (
             <Ionicons name="cart" color={color} size={size} />
-            
-          ),
+              ),
           headerRight: ({ tintColor }) => (
             <IconButton
               icon="exit"
@@ -112,8 +89,7 @@ function DrawerNavigator() {
               size={24}
               onPress={authCtx.logout}
             />
-            
-          ),
+             ),
         footerRight:({tintColor})=>(
             <FloatButton
             alignSelf='flex-end'
@@ -122,14 +98,12 @@ function DrawerNavigator() {
                 color={tintColor}
                 size={55}
                 onPress={authCtx.logout} />
-
-          ),
-          
+                ), 
         }}
       />
        <Drawer.Screen
         name="Maintenance"
-        component={SaleScreen}
+        component={Supplier}
         options={{
           drawerIcon: ({ color, size }) => (
             <Ionicons name="checkbox" color={color} size={size} />
@@ -146,7 +120,7 @@ function DrawerNavigator() {
       />
  <Drawer.Screen
         name="Production"
-        component={SaleScreen}
+        component={Commision}
         options={{
           drawerIcon: ({ color, size }) => (
             <Ionicons name="server" color={color} size={size} />
@@ -236,7 +210,6 @@ function DrawerNavigator() {
 }
 
 function AuthStack() {
-  //<Image source={require('/assets/images/logo.png')} />;
   return (
     <Stack.Navigator
       screenOptions={{
@@ -278,11 +251,21 @@ function AuthenticatedStack() {
         />
       
       <Stack.Screen
-          title="Title"
+          title="Task"
         name="Test2"
         component={TestScreen2}
       />
-    </Stack.Navigator>
+      <Stack.Screen
+          title="Title"
+        name="Order Status"
+        component= {MaterialReq}
+      />
+      <Stack.Screen
+          title="Task"
+        name="DispalyScreen"
+        component={DispalyScreen}
+      />
+       </Stack.Navigator>
   );
 }
 
@@ -316,9 +299,7 @@ function Root() {
     fetchToken();
   }, []);
 
-  // if (isTryingLogin) {
-  //   return <AppLoading />;
-  // }
+  
 
   return <Navigation />;
 }
@@ -326,11 +307,11 @@ function Root() {
 export default function App() {
   
   return (
-    <PaperProvider>
+    <>
       <StatusBar style="light" />
       <AuthContextProvider>
         <Root />
       </AuthContextProvider>
-    </PaperProvider>
+    </>
   );
 }

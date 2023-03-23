@@ -1,97 +1,131 @@
-import React, { Component } from 'react';
-import { StyleSheet, View ,Text, TouchableOpacity , Alert} from 'react-native';
-import { Table, Row, Rows } from 'react-native-table-component';
+
+import React from 'react';
 import moment from 'moment';
-
-export default class ExampleOne extends Component {
-   
-
-  constructor(props) {
-    super(props);
-    var date= moment().format("MM/DD/YYYY ");
-    var tomDate = moment().add(1, 'days').calendar("MM/DD/YYYY ");
-    var dftDate = moment().add(2, 'days').calendar("MM/DD/YYYY ");
-    this.state = {
-      tableHead: ['Order Status', 'Description', 'Due Date','submit'],
-      tableData: [
-        ['New Purchase Request', 'Approve PR No. 2022-2023/1', date,'button' 
-],
-        ['Price Revision',' Approve RD40SFN(SPL)(BR)-28.0' , date,'n'],
-        ['New Product', 'Approve RDO52-11.0 (70017492)', date,'n'],
-        ['New Equipment Master', 'Approve COOLANT CONCENTRATE DCA 15L(41050263)', date,'n'],
-        ['New Product', 'Update Commercial RDO52-10.0 (70017491)', tomDate,'n'],
-        ['Item Supplier Price', 'Approve SERVICE & RETURN FOR NAKAMURA TMC 35X SERVO DRIVE(50010166)', date,'n'],
-        ['Purchase Order Workflow', ' Dispatch PO No. 2022-2023/408', dftDate,'n'],
-        ['Item Supplier', 'Approve REWINDING & RETURN FOR INDUCITON MOTOR 0.37, KW RPM-1380,MAKE SIMENS 3 PH(50010168)', tomDate,'n'],
-        ['Bulk Price Update', ' Submit EUGEN FAHRION GmbH & Co. (1002)',tomDate,'n'],
-        ['BreakDown Maintenance', ' Start Breakdown No. BM/2021-2022/2 EQ-SHIGIYA-"G-20 ND"-"380 VOLTS"-"50 HZ" - RPT/G-441', dftDate,'n']
-      ]
-    }
-  }
-  
-  render() {
-    const state = this.state;
-    return (
-      <View style={styles.container}>
-        <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
-          <Row data={state.tableHead} style={styles.head} textStyle={styles.text}/>
-          <Rows data={state.tableData} textStyle={styles.text}/>
-        </Table>
-      </View>
-    )
-  }
-}
-
-const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-  head: { height: 40, backgroundColor: '#f1f8ff' },
-  text: { margin: 6 }
-});
-
-/*import React, {useState} from 'react';
-import {Text, StyleSheet} from 'react-native';
-function TestScreen() {
-    return (
-        <Text style={styles.baseText}>
-            <Text style={styles.titleText}>
-               Title
-                {'\n'}
-                {'\n'}
-            </Text>
-            <Text numberOfLines={5}>body</Text>
-        </Text>
-    );
-}
-
-const styles = StyleSheet.create({
-  baseText: {
-    fontFamily: 'sans-serif',
-  },
-  titleText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-});
-
-export default TestScreen;*/
+import { Avatar, Button, Card, Text, DataTable } from 'react-native-paper';
+const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
 
-/*function AuthStack() {
+import {
+  SafeAreaView,
+  StyleSheet,
+  View,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
+
+const App = () => {
+
+  var date= moment().format("MM/DD/YYYY ");
+  var tomDate = moment().add(1, 'days').calendar("MM/DD/YYYY ");
+  var dftDate = moment().add(2, 'days').calendar("MM/DD/YYYY ");
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerStyle: { backgroundColor: Colors.primary500 },
-        headerTintColor: 'blue',
-        contentStyle: { backgroundColor: Colors.primary500 },
-      }}
-    >
-      <Stack.Screen name="Task View" component={test} 
-      options={{
-        headerShown:true
-      }} />
+    
+    <SafeAreaView style={{flex: 1}}>
+      <View style={styles.container}>
+        <ScrollView vertical={true}>
+          <Card>
+              <Card.Title style={styles.buttonText} title="Purchase Order"/>
+              <Card.Content>
+              <View >
+                  <Card  mode='contained'>
+                    <Card.Content>
+                      {/* <Text variant="titleLarge"></Text> */}
+                      <Text style={styles.buttonText} variant="bodyMedium"> Palayoor Engineers (1106)</Text>
+                      <View style={styles.vertical}>
+                     <Text>2022-2023/173</Text>
+                <Text>09-07-2022</Text>
+                 </View>
+                      <Text variant="bodyMedium">GST: 9450.00</Text>
+                      <Text variant="bodyMedium"> Grand Total: 123902.0</Text>
+                    
+                     
+                    </Card.Content>
+                  </Card>
+                   <Card style={styles.prItems}>
+                      <Card.Content>
+                        <Text  style={styles.buttonText} variant="bodyMedium">20080007 BI-DD-Diamond Dresser 8x100-SP</Text>
+                        <Text style={styles.buttonText} variant="bodyMedium">4.0 Nos</Text>
+                         <View style={styles.vertical}>
+                     
+                <Text>Unit Price:1800 INR</Text>
+                <Text>Delivery Date:22-03-2022</Text>
+                 </View>
+      </Card.Content>
+                  </Card>
+                  <Card style={styles.prItems}>
+                      <Card.Content>
+                        <Text  style={styles.buttonText} variant="bodyMedium">41050229 SLIDE & MAIN BRACKET</Text>
+                        <Text style={styles.buttonText} variant="bodyMedium">4.0 Nos</Text>
+                        <View style={styles.vertical}>
+                <Text>Unit Price:2400 INR</Text>
+                <Text>Delivery Date:30-07-2022</Text>
+                 </View>
+           </Card.Content>
+                    </Card>
+                </View>
+               
+              </Card.Content>
       
-    </Stack.Navigator>
+              <Card.Actions>
+                <Button>Reject</Button>
+                <Button>Approve</Button>
+              </Card.Actions>
+            </Card>
+
+        </ScrollView>
+        </View>
+    </SafeAreaView>
   );
-}
-*/
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: 1,
+    padding: 0,
+    backgroundColor:'#bcdeeb'
+  },
+  buttonText:{
+    color:'#000000',
+    fontWeight:'bold',
+    marignBottom:4,
+    marginLeft: 10,
+    flexWrap:'wrap-reverse'
+  },
+  buttonTextSpace:{
+    color:'#000000',
+    marignBottom:4,
+    justifyContent: 'space-between'
+  },
+  prItems: {
+    marginTop: 3,
+  
+  },
+  subHeader: {
+    backgroundColor : "#2089dc",
+    color : "white",
+    textAlign : "center",
+    paddingVertical : 5,
+    marginBottom : 10
+  },
+  vertical: {
+    marginBottom: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  Alertbutton:{
+    backgroundColor: '#4ba37b',
+      width: 100,
+      borderRadius: 50,
+      alignItems: 'center',
+      marginTop: 50,
+      marginLeft:10,
+      height: 30,
+      }
+
+});
+
+export default App;
 
